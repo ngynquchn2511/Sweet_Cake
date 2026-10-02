@@ -1,0 +1,18 @@
+/* Hiệu ứng chữ hiện ra khi slide chuyển tới */
+.swiper-slide-active h2 {
+    animation: fadeInUp 0.8s both;
+}
+.swiper-slide-active p {
+    animation: fadeInUp 1s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

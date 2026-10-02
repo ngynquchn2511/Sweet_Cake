@@ -1,0 +1,58 @@
+/* Tùy chỉnh Banner */
+.hero-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=2000') center/cover;
+    height: 450px;
+    border-radius: 0 0 50px 50px; /* Bo cong cạnh dưới của banner */
+}
+
+.shadow-text {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Tùy chỉnh Card sản phẩm */
+.bakery-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px !important;
+}
+
+.bakery-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+}
+
+/* Giữ ảnh luôn cùng kích thước và không bị méo */
+.product-img {
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.bakery-card:hover .product-img {
+    transform: scale(1.1);
+}
+
+/* Màu sắc chủ đạo hồng tiệm bánh */
+.btn-primary {
+    background-color: #ff6b81;
+    border-color: #ff6b81;
+}
+
+.btn-primary:hover {
+    background-color: #fb4d64;
+    border-color: #fb4d64;
+}
+
+.text-primary {
+    color: #ff6b81 !important;
+}
+
+.btn-outline-primary {
+    color: #ff6b81;
+    border-color: #ff6b81;
+}
+
+.btn-outline-primary:hover {
+    background-color: #ff6b81;
+    border-color: #ff6b81;
+}

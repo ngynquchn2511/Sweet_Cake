@@ -1,0 +1,90 @@
+/* Import font chữ mềm mại cho tiêu đề */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap');
+
+.navbar {
+    font-family: 'Poppins', sans-serif;
+    padding: 0.8rem 0;
+    transition: all 0.3s ease;
+}
+
+/* Tùy chỉnh Logo */
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: #d63384 !important; /* Màu hồng dâu cho tiệm bánh */
+}
+
+/* Hiệu ứng cho các liên kết menu */
+.nav-link {
+    color: #555 !important;
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #d63384 !important;
+}
+
+/* Tạo gạch chân khi hover */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d63384;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Tùy chỉnh ô tìm kiếm */
+.input-group .form-control {
+    border-radius: 20px 0 0 20px;
+    border: 1px solid #f8d7da;
+}
+
+.input-group .btn {
+    border-radius: 0 20px 20px 0;
+    background-color: #d63384;
+    border: none;
+    padding: 0 20px;
+}
+
+.input-group .btn:hover {
+    background-color: #b92b6f;
+}
+
+/* Biểu tượng giỏ hàng */
+.bi-cart3 {
+    color: #555;
+    transition: transform 0.2s ease;
+}
+
+.bi-cart3:hover {
+    color: #d63384;
+    transform: scale(1.1);
+}
+
+/* Badge số lượng trong giỏ hàng */
+.badge {
+    background-color: #ffc107 !important; /* Màu vàng bơ */
+    color: #000;
+}
+.hover-zoom {
+    transition: transform 0.2s ease;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.1);
+}
+
+.btn-pink:hover {
+    opacity: 0.9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,87 @@
+/* Tổng thể Card */
+.product-card {
+    transition: all 0.3s ease-in-out;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hiệu ứng khi di chuột qua Card */
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Khung chứa ảnh */
+.product-img-wrapper {
+    width: 100%;
+    height: 220px; /* Chiều cao cố định để các card đều nhau */
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.product-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img-wrapper img {
+    transform: scale(1.1); /* Phóng to nhẹ ảnh khi hover */
+}
+
+/* Badge Giảm giá */
+.badge {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 0 0 10px 0;
+}
+
+/* Nội dung Card */
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    color: #333;
+    /* Giới hạn tên bánh trong 2 dòng để không làm lệch card */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.8rem; 
+}
+
+/* Giá tiền */
+.text-primary {
+    color: #f06292 !important; /* Màu hồng đặc trưng tiệm bánh */
+}
+
+/* Nút Thêm vào giỏ */
+.btn-outline-primary {
+    color: #f06292;
+    border-color: #f06292;
+    transition: all 0.3s;
+}
+
+.btn-outline-primary:hover {
+    background-color: #f06292;
+    border-color: #f06292;
+    color: #fff;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 576px) {
+    .product-img-wrapper {
+        height: 180px;
+    }
+    .card-title {
+        font-size: 1rem;
+    }
+}

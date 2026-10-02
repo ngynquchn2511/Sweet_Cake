@@ -1,0 +1,31 @@
+/* Nền gradient lướt nhẹ */
+.auth-background {
+    background: linear-gradient(135deg, #fff5f7 0%, #fce7f3 100%);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Các khối tròn trang trí */
+.shape {
+    position: absolute;
+    background: linear-gradient(45deg, rgba(219, 39, 119, 0.1), rgba(219, 39, 119, 0.05));
+    border-radius: 50%;
+    z-index: 0;
+    animation: float 20s infinite linear;
+}
+
+.shape-1 { width: 400px; height: 400px; top: -100px; right: -100px; }
+.shape-2 { width: 300px; height: 300px; bottom: -50px; left: -100px; animation-duration: 25s; }
+
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(20px, 40px) rotate(10deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Nâng cấp Card */
+.login-card {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 25px 50px -12px rgba(219, 39, 119, 0.15);
+}

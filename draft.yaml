@@ -1,0 +1,195 @@
+models:
+  User:
+    username: string:100
+    full_name: string:100
+    email: string:100 unique
+    phone: string:15
+    password: string
+    avatar: string nullable
+    role: enum:admin,customer default:customer
+    status: enum:active,inactive,banned default:active
+    email_verified_at: timestamp nullable
+    reset_token: string:100 nullable
+    last_login: timestamp nullable
+    relationships:
+      hasMany: ShippingAddress, Order, Review, AdminLog, Wishlist
+      hasOne: Cart
+
+  Category:
+    name: string:100
+    slug: string:120 unique
+    description: text nullable
+    image: string nullable
+    status: enum:active,inactive default:active
+    display_order: integer default:0
+    relationships:
+      hasMany: Product
+
+  Product:
+    category_id: id
+    name: string:200
+    slug: string:220 unique
+    price: decimal:10,2
+    discount_price: decimal:10,2 nullable
+    description: text nullable
+    image: string
+    images: json nullable
+    stock: uint default:0
+    unit: string:20 default:chiếc
+    weight: decimal:8,2 nullable
+    status: enum:active,inactive,out_of_stock default:active
+    view_count: uint default:0
+    sold_count: uint default:0
+    relationships:
+      belongsTo: Category
+      hasMany: CartItem, OrderItem, Review, Wishlist
+
+  Promotion:
+    code: string:50 unique
+    description: text nullable
+    discount_type: enum:percent,fixed default:percent
+    discount_value: decimal:10,2
+    min_order_value: decimal:10,2 default:0
+    max_discount: decimal:10,2 nullable
+    usage_limit: integer nullable
+    used_count: integer default:0
+    start_date: datetime
+    end_date: datetime
+    status: enum:active,inactive,expired default:active
+    relationships:
+      hasMany: Order
+
+  ShippingAddress:
+    user_id: id
+    receiver_name: string:100
+    phone: string:15
+    province: string:100
+    district: string:100
+    ward: string:100
+    address: text
+    note: text nullable
+    is_default: boolean default:0
+    relationships:
+      belongsTo: User
+
+  Cart:
+    user_id: id unique
+    relationships:
+      belongsTo: User
+      hasMany: CartItem
+
+  CartItem:
+    cart_id: id
+    product_id: id
+    quantity: uint default:1
+    price: decimal:10,2
+    relationships:
+      belongsTo: Cart, Product
+
+  Order:
+    user_id: id
+    shipping_address_id: id nullable
+    promotion_id: id nullable
+    order_code: string:20 unique
+    subtotal: decimal:10,2
+    shipping_fee: decimal:10,2 default:0
+    discount_amount: decimal:10,2 default:0
+    total_amount: decimal:10,2
+    order_status: enum:pending,confirmed,processing,shipping,completed,cancelled,refunded default:pending
+    payment_method: enum:cod,bank_transfer,momo,vnpay,zalopay default:cod
+    payment_status: enum:unpaid,paid,refunded default:unpaid
+    note: text nullable
+    cancelled_reason: text nullable
+    relationships:
+      belongsTo: User, ShippingAddress, Promotion
+      hasMany: OrderItem, Payment, Review
+
+  OrderItem:
+    order_id: id
+    product_id: id
+    product_name: string:200
+    quantity: uint
+    price: decimal:10,2
+    discount_price: decimal:10,2 nullable
+    subtotal: decimal:10,2
+    relationships:
+      belongsTo: Order, Product
+
+  Payment:
+    order_id: id
+    payment_method: enum:cod,bank_transfer,momo,vnpay,zalopay
+    transaction_id: string:100 nullable
+    amount: decimal:10,2
+    payment_status: enum:pending,success,failed,refunded default:pending
+    paid_at: timestamp nullable
+    note: text nullable
+    relationships:
+      belongsTo: Order
+
+  Review:
+    user_id: id
+    product_id: id
+    order_id: id nullable
+    rating: uint
+    comment: text nullable
+    images: json nullable
+    status: enum:pending,approved,rejected default:pending
+    relationships:
+      belongsTo: User, Product, Order
+
+  AdminLog:
+    user_id: id
+    action: enum:create,update,delete,login,logout
+    table_name: string:50 nullable
+    record_id: uint nullable
+    old_value: json nullable
+    new_value: json nullable
+    ip_address: string:45 nullable
+    user_agent: text nullable
+    relationships:
+      belongsTo: User
+
+  Wishlist:
+    user_id: id
+    product_id: id
+    relationships:
+      belongsTo: User, Product
+
+  Banner:
+    title: string:200
+    image: string
+    link: string nullable
+    position: enum:home_slider,home_banner,sidebar default:home_slider
+    display_order: integer default:0
+    status: enum:active,inactive default:active
+    start_date: datetime nullable
+    end_date: datetime nullable
+
+  ContactMessage:
+    name: string:100
+    email: string:100
+    phone: string:15 nullable
+    subject: string:200
+    message: text
+    status: enum:new,read,replied default:new
+    admin_reply: text nullable
+    replied_at: timestamp nullable
+
+controllers:
+  Product:
+    index:
+      query: all
+      render: Products/Index with:products
+  Category:
+    index:
+      query: all
+      render: Categories/Index with:categories
+  Order:
+    index:
+      query: all:user_id
+      render: Orders/Index with:orders
+  User:
+    index:
+      query: all
+      render: Admin/Users/Index with:users
+  

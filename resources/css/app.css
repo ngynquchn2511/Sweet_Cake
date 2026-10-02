@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary-pink: #ff4d94;
+    --soft-pink: #fff0f6;
+    --dark-pink: #c41d7f;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+}
+
+body {
+    @apply bg-gray-50 text-gray-800 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Hiệu ứng Glassmorphism cho Card hoặc Navbar */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+/* Nút bấm có hiệu ứng Gradient & Scale */
+.btn-sweet {
+    @apply px-6 py-2.5 rounded-full font-bold text-white transition-all duration-300;
+    background: linear-gradient(135deg, var(--primary-pink), #ff758c);
+}
+
+.btn-sweet:hover {
+    @apply shadow-lg;
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.btn-sweet:active {
+    transform: translateY(0);
+}
+
+/* Hiệu ứng hover cho ảnh sản phẩm */
+.product-image-container {
+    @apply overflow-hidden rounded-xl;
+}
+
+.product-image-container img {
+    @apply transition-transform duration-500;
+}
+
+.product-image-container:hover img {
+    @apply scale-110;
+}
+
+/* Tùy chỉnh thanh cuộn (Scrollbar) cho đẹp */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffb8d1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-pink);
+}
+
+/* Tạm thời giả lập Grid của Bootstrap để layout không bị vỡ */
+.row { display: flex; flex-wrap: wrap; margin: -10px; }
+.col-md-4 { width: 33.333%; padding: 10px; }
